@@ -1,0 +1,346 @@
+Question 1:
+---------------------------------------
+
+import java.util.Scanner;
+public class Main { // Renamed from Source to Main
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read two integers
+int num1 = scanner.nextInt();
+int num2 = scanner.nextInt();
+scanner.close();
+// Condition 1: If both numbers are the same, print 0
+if (num1 == num2) {
+System.out.println(0);
+return;
+}
+// Condition 2: Check if both numbers are prime
+boolean isPrime1 = isPrime(num1);
+boolean isPrime2 = isPrime(num2);
+// Condition 3: If both numbers are prime, print the larger number; otherwise, print the smaller number
+if (isPrime1 && isPrime2) {
+System.out.println(Math.max(num1, num2));
+} else {
+System.out.println(Math.min(num1, num2));
+}
+}
+// Static method to check if a number is prime
+public static boolean isPrime(int num) {
+if (num <= 1) return false; // 0 and 1 are not prime numbers
+for (int i = 2; i <= Math.sqrt(num); i++) {
+if (num % i == 0) return false; // If divisible, not a prime
+}
+return true; // If no divisor found, it's prime
+}
+}
+
+--------------------------------------------------------
+Questions 2:
+-------------------------------------------------------------
+import java.util.Scanner;
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+float physics = scanner.nextFloat();
+float chemistry = scanner.nextFloat();
+float mathematics = scanner.nextFloat();
+scanner.close();
+if (physics < 0 || physics > 100 || chemistry < 0 || chemistry > 100 || mathematics < 0 || mathematics > 100) {
+System.out.println("INVALIDMARKS");
+return;
+}
+// Calculate average marks
+float averageMarks = (physics + chemistry + mathematics) / 3;
+// Determine grade based on average marks
+if (averageMarks >= 70) {
+System.out.println("DISTINCTION");
+} else if (averageMarks >= 60) {
+System.out.println("FIRST");
+} else if (averageMarks >= 50) {
+System.out.println("SECOND");
+} else if (averageMarks >= 40) {
+System.out.println("THIRD");
+} else {
+System.out.println("FAIL");
+}
+}
+}
+
+------------------------------------------------------
+Question 3:
+-----------------------------------------------
+import java.util.Scanner;
+public class Main { // Changed class name from Source to Main
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read three integer sides
+int a = scanner.nextInt();
+int b = scanner.nextInt();
+int c = scanner.nextInt();
+scanner.close();
+// Check for invalid input
+if (a <= 0 || b <= 0 || c <= 0) {
+System.out.println("INVALID_INPUT");
+return;
+}
+// Ensure the sides are in decreasing order (a >= b >= c)
+if (!(a >= b && b >= c)) {
+System.out.println("INVALID_INPUT");
+return;
+}
+if ((a * a) == (b * b + c * c)) {
+System.out.println("RIGHT ANGLE");
+} else {
+System.out.println("NOT RIGHT ANGLE");
+}
+}
+}
+-------------------------------------------------------------------
+Question 4:
+----------------------
+
+import java.util.Scanner;
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read the size of the array
+int size = scanner.nextInt();
+scanner.nextLine(); // Consume the newline character after integer input
+// Validate input size
+if (size <= 0) {
+System.out.println("INVALID INPUT");
+scanner.close();
+return;
+}
+// Declare and populate the array
+String[] designations = new String[size];
+int salesCount = 0; // Counter for "Sales" occurrences
+for (int i = 0; i < size; i++) {
+designations[i] = scanner.nextLine().trim(); // Read and trim input
+if (designations[i].equalsIgnoreCase("Sales")) { // Case-insensitive check
+salesCount++;
+}
+}
+scanner.close();
+// Display the result
+if (salesCount > 0) {
+System.out.println("Designations in Sales Department " + salesCount);
+} else {
+System.out.println("No designations in Sales department");
+}
+}
+}
+
+------------------------------------------
+Questions 5:
+-------------------
+import java.util.Scanner;
+class Voter {
+// Static method to check voting eligibility
+public static void checkEligibility(int age) {
+if (age >= 18) {
+System.out.println("Congratulations! You are eligible for voting");
+} else {
+int diff = 18 - age; // Calculate years left until eligibility
+System.out.println("Sorry! Not eligible for Voting. You have to wait for " + diff + " years");
+}
+}
+}
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read age as an integer
+int age = scanner.nextInt();
+scanner.close();
+// Call static method to check eligibility
+Voter.checkEligibility(age);
+}
+}
+-------------------------------------------------
+Question 6:
+-----------------------------------------------
+
+import java.util.Scanner;
+import java.util.Objects;
+class Person {
+private String name;
+private int age;
+private char gender;
+// Constructor
+public Person(String name, int age, char gender) {
+this.name = name;
+this.age = age;
+this.gender = gender;
+}
+// Getters
+public String getName() {
+return name;
+}
+public int getAge() {
+return age;
+}
+public char getGender() {
+return gender;
+}
+// Overriding equals() method to compare objects based on attributes
+@Override
+public boolean equals(Object obj) {
+if (this == obj) return true; // Check if both references are same
+if (obj == null || getClass() != obj.getClass()) return false; // Check for null or different class
+Person person = (Person) obj;
+return age == person.age &&
+gender == person.gender &&
+name.equals(person.name); // Compare attributes for equality
+}
+}
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read first person's details
+String name1 = scanner.next();
+int age1 = scanner.nextInt();
+char gender1 = scanner.next().charAt(0);
+// Read second person's details
+String name2 = scanner.next();
+int age2 = scanner.nextInt();
+char gender2 = scanner.next().charAt(0);
+scanner.close();
+// Create Person objects
+Person person1 = new Person(name1, age1, gender1);
+Person person2 = new Person(name2, age2, gender2);
+// Check if both objects are equal
+if (person1.equals(person2)) {
+System.out.println("Same");
+} else {
+System.out.println("Different");
+}
+}
+}
+
+----------------------------------------------------
+Question 7:
+---------------
+import java.util.Scanner;
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Read the number of units
+int units = scanner.nextInt();
+scanner.close();
+// Validate input
+if (units < 0) {
+System.out.println("INVALID INPUT");
+return;
+}
+// Calculate and print the electricity bill
+double billAmount = calculateElectricityBill(units);
+System.out.println(billAmount);
+}
+// Static method to calculate the electricity bill
+static double calculateElectricityBill(int units) {
+if (units <= 30) {
+return units * 3.5;
+} else if (units <= 100) {
+return units * 4.0;
+} else {
+return units * 5.0;
+}
+}
+}
+---------------------------------------------------------
+Question 8:
+-------------------------
+
+import java.util.Scanner;
+class Student {
+String name;
+String usn;
+String college;
+int cgpa;
+// Constructor to initialize the Student object
+public Student(String name, String usn, String college, int cgpa) {
+this.name = name;
+this.usn = usn;
+this.college = college;
+this.cgpa = cgpa;
+}
+}
+class StudentImplementation {
+// Method to extract student details from the given string and return a Student object
+public Student getStudentInfo(String str) {
+int atIndex = str.indexOf('@'); // Find position of '@'
+int dashIndex = str.indexOf('-'); // Find position of '-'
+int hashIndex = str.indexOf('#'); // Find position of '#'
+String name = str.substring(0, atIndex).trim(); // Extract name before '@'
+String usn = str.substring(atIndex + 1, dashIndex).trim(); // Extract USN
+String college = str.substring(dashIndex + 1, hashIndex).trim(); // Extract college
+int cgpa = Integer.parseInt(str.substring(hashIndex + 1).trim()); // Extract CGPA
+return new Student(name, usn, college, cgpa);
+}
+// Method to determine the student's section based on the last three digits of the USN
+public String getStudentSection(Student s) {
+String usnSuffix = s.usn.substring(s.usn.length() - 3); // Extract last three digits
+int usnNumber = Integer.parseInt(usnSuffix); // Convert to integer
+if (usnNumber >= 1 && usnNumber <= 60) {
+return "A";
+} else if (usnNumber >= 61 && usnNumber <= 120) {
+return "B";
+} else if (usnNumber >= 121 && usnNumber <= 180) {
+return "C";
+} else {
+return "Z";
+}
+}
+}
+public class Main {
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+String input = scanner.nextLine(); // Read input string
+scanner.close();
+StudentImplementation studentImpl = new StudentImplementation();
+Student student = studentImpl.getStudentInfo(input);
+// Printing extracted details
+System.out.println(student.name);
+System.out.println(student.usn);
+System.out.println(student.college);
+System.out.println(student.cgpa);
+// Printing student section
+System.out.println(studentImpl.getStudentSection(student));
+}
+}
+
+----------------------------------------------------------
+Question 9:
+------------------------
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
+public class Main {
+// Static method to remove maximum and minimum values from the list
+public static void removeMaxMin(ArrayList<Integer> scores) {
+if (scores.size() < 2) {
+System.out.println("Not enough elements to remove max and min.");
+return;
+}
+// Find the max and min values in the list
+int maxVal = Collections.max(scores);
+int minVal = Collections.min(scores);
+// Remove the max and min values
+scores.remove(Integer.valueOf(maxVal));
+scores.remove(Integer.valueOf(minVal));
+// Print the remaining values in the list
+System.out.println(scores);
+}
+public static void main(String[] args) {
+Scanner scanner = new Scanner(System.in);
+// Create an ArrayList to store 5 unique integer values
+ArrayList<Integer> scores = new ArrayList<>();
+for (int i = 0; i < 5; i++) {
+scores.add(scanner.nextInt()); // Read integer values
+}
+scanner.close();
+// Call the method to remove max and min values
+removeMaxMin(scores);
+}
+}
+------------------------------------------------------
